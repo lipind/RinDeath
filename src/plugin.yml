@@ -1,0 +1,12 @@
+name: RinDeath
+author: Yakumo_Reddo
+version: 0.0.1
+main: com.satsukirin.RinDeath.RinDeath
+api-version: 1.16
+commands:
+    rind:
+        description: RinDeath.
+        usage: /rind help
+    rindeath:
+        description: RinDeath.
+        usage: /rindeath help

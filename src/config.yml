@@ -1,0 +1,5 @@
+enable: true
+graveModel: 1025
+respawnTime: 60
+range: 10
+tipType: actionbar
