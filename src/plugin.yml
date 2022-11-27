@@ -1,6 +1,6 @@
 name: RinDeath
 author: Yakumo_Reddo
-version: 0.0.1
+version: 1.0.0
 main: com.satsukirin.RinDeath.RinDeath
 api-version: 1.16
 commands:
