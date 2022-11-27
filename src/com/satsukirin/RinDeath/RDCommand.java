@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.command.Command;
@@ -46,9 +47,17 @@ public class RDCommand implements TabExecutor {
 			}
 			Player player = (Player)sender;
 			if (args[0].equalsIgnoreCase("respawn")) {
+				if(!player.hasPermission("rindeath.cmd.respawn")) {
+					player.sendMessage(ChatColor.RED+"您没有使用此命令的权限!");
+					return true;
+				}
 				RDSecondThread.getInstance().removePlayer(player, true);
 			}
 			if(args[0].equalsIgnoreCase("reviveitem")) {
+				if( !player.hasPermission("rindeath.cmd.reviveitem")) {
+					player.sendMessage(ChatColor.RED+"您没有使用此命令的权限!");
+					return true;
+				}
 				if(player.getEquipment().getItemInMainHand().getType().equals(Material.AIR)) {
 					player.sendMessage("你尚未持有物品");
 					return true;
@@ -59,6 +68,10 @@ public class RDCommand implements TabExecutor {
 				handitem.setItemMeta(meta);
 			}
 			if(args[0].equalsIgnoreCase("revive")) {
+				if(!player.hasPermission("rindeath.cmd.revive")) {
+					player.sendMessage(ChatColor.RED+"您没有使用此命令的权限!");
+					return true;
+				}
 				RayTraceResult rtr= player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5,1.0,a -> a.getType().equals(EntityType.ARMOR_STAND));
 				if (rtr==null || rtr.getHitEntity()==null) {
 					player.sendMessage("你还没有选中玩家坟墓");

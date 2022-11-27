@@ -1,6 +1,6 @@
 name: RinDeath
 author: Yakumo_Reddo
-version: 1.0.0
+version: 1.0.1
 main: com.satsukirin.RinDeath.RinDeath
 api-version: 1.16
 commands:
@@ -10,3 +10,20 @@ commands:
     rindeath:
         description: RinDeath.
         usage: /rindeath help
+permissions:
+    rindeath.cmd.respawn:
+        description: Allows respawn
+        default: true
+    rindeath.cmd.revive:
+        description: Allows revive command
+        default: op
+    rindeath.cmd.reviveitem:
+        description: Allows reviveitem command
+        default: op
+    rindeath.cmd.*:
+        description: Wildcard command permission
+        default: op
+        children:
+            rindeath.cmd.respawn: true
+            rindeath.cmd.revive: true
+            rindeath.cmd.reviveitem: true

@@ -1,5 +1,12 @@
+# 是否启用坟墓功能
 enable: true
+# 坟墓的模型id，默认为紫珀块方块
 graveModel: 1025
+# 剩余复活时间，单位: 秒
 respawnTime: 60
+# 灵魂游荡范围，直线距离
 range: 10
+# 提示模式，actionbar为物品栏上方的条
+# bossbar为屏幕上方的boss条
+# title为屏幕中间的标题
 tipType: actionbar
