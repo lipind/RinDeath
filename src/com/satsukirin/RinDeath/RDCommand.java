@@ -37,49 +37,53 @@ public class RDCommand implements TabExecutor {
 				sender.sendMessage("################");
 				sender.sendMessage("#   RinDeath   #");
 				sender.sendMessage("################");
-				sender.sendMessage("/rind respawn                - ÖØÉú²¢·µ»Øµ½ÖØÉúµã");
-				sender.sendMessage("/rind revive                 - ¸´»îÊÓÏßÖĞµÄÍæ¼Ò");
-				sender.sendMessage("/rind reviveitem             - ÉèÖÃÊÖÖĞÎïÆ·¿ÉÓÃÓÚ¸´»î");
+				sender.sendMessage("/rind respawn                - é‡ç”Ÿå¹¶è¿”å›åˆ°é‡ç”Ÿç‚¹");
+				sender.sendMessage("/rind revive                 - å¤æ´»è§†çº¿ä¸­çš„ç©å®¶");
+				sender.sendMessage("/rind reviveitem             - è®¾ç½®æ‰‹ä¸­ç‰©å“å¯ç”¨äºå¤æ´»");
+				sender.sendMessage("/rind coin <æ•°é‡>            - è´­ä¹°å¤æ´»å¸");
 			}
 
 			if (!(sender instanceof Player)) {
-				sender.sendMessage("Ö»ÓĞÍæ¼Ò¿ÉÒÔÖ´ĞĞÕâÌõÃüÁî!");
+				sender.sendMessage("åªæœ‰ç©å®¶å¯ä»¥æ‰§è¡Œè¿™æ¡å‘½ä»¤!");
 			}
 			Player player = (Player)sender;
 			if (args[0].equalsIgnoreCase("respawn")) {
 				if(!player.hasPermission("rindeath.cmd.respawn")) {
-					player.sendMessage(ChatColor.RED+"ÄúÃ»ÓĞÊ¹ÓÃ´ËÃüÁîµÄÈ¨ÏŞ!");
+					player.sendMessage(ChatColor.RED+"æ‚¨æ²¡æœ‰ä½¿ç”¨æ­¤å‘½ä»¤çš„æƒé™!");
 					return true;
 				}
 				RDSecondThread.getInstance().removePlayer(player, true);
 			}
-			if(args[0].equalsIgnoreCase("reviveitem")) {
+			if (args[0].equalsIgnoreCase("coin")) {
+				//è¦å†™çš„é€»è¾‘
+			}
+			/*if(args[0].equalsIgnoreCase("reviveitem")) {
 				if( !player.hasPermission("rindeath.cmd.reviveitem")) {
-					player.sendMessage(ChatColor.RED+"ÄúÃ»ÓĞÊ¹ÓÃ´ËÃüÁîµÄÈ¨ÏŞ!");
+					player.sendMessage(ChatColor.RED+"æ‚¨æ²¡æœ‰ä½¿ç”¨æ­¤å‘½ä»¤çš„æƒé™!");
 					return true;
 				}
 				if(player.getEquipment().getItemInMainHand().getType().equals(Material.AIR)) {
-					player.sendMessage("ÄãÉĞÎ´³ÖÓĞÎïÆ·");
+					player.sendMessage("ä½ å°šæœªæŒæœ‰ç‰©å“");
 					return true;
 				}
 				ItemStack handitem=player.getEquipment().getItemInMainHand();
 				ItemMeta meta = handitem.getItemMeta();
 				meta.getPersistentDataContainer().set(new NamespacedKey(RinDeath.getInstance(), "revive"), PersistentDataType.INTEGER, 1);
 				handitem.setItemMeta(meta);
-			}
+			}*/
 			if(args[0].equalsIgnoreCase("revive")) {
 				if(!player.hasPermission("rindeath.cmd.revive")) {
-					player.sendMessage(ChatColor.RED+"ÄúÃ»ÓĞÊ¹ÓÃ´ËÃüÁîµÄÈ¨ÏŞ!");
+					player.sendMessage(ChatColor.RED+"æ‚¨æ²¡æœ‰ä½¿ç”¨æ­¤å‘½ä»¤çš„æƒé™!");
 					return true;
 				}
 				RayTraceResult rtr= player.getWorld().rayTraceEntities(player.getEyeLocation(), player.getEyeLocation().getDirection(), 5,1.0,a -> a.getType().equals(EntityType.ARMOR_STAND));
 				if (rtr==null || rtr.getHitEntity()==null) {
-					player.sendMessage("Äã»¹Ã»ÓĞÑ¡ÖĞÍæ¼Ò·ØÄ¹");
+					player.sendMessage("ä½ è¿˜æ²¡æœ‰é€‰ä¸­ç©å®¶åŸå¢“");
 					return true;
 				}
 				ArmorStand as = (ArmorStand)rtr.getHitEntity();
 				if (!as.getPersistentDataContainer().has(new NamespacedKey(RinDeath.getInstance(),"playeruuid"),PersistentDataType.STRING)) {
-					player.sendMessage("Äã»¹Ã»ÓĞÑ¡ÖĞÍæ¼Ò·ØÄ¹");
+					player.sendMessage("ä½ è¿˜æ²¡æœ‰é€‰ä¸­ç©å®¶åŸå¢“");
 					return true;
 				}
 				RDSecondThread.getInstance().removePlayer(UUID.fromString(as.getPersistentDataContainer().get(new NamespacedKey(RinDeath.getInstance(), "playeruuid"), PersistentDataType.STRING)), false);
