@@ -86,6 +86,11 @@ public class RDCommand implements TabExecutor {
 					player.sendMessage("你还没有选中玩家坟墓");
 					return true;
 				}
+				if(/*检查硬币数量是否足够*/) {
+					player.sendMessage("你的复活晶片不足");
+					return true;
+				}
+				//扣除虚拟硬币;
 				RDSecondThread.getInstance().removePlayer(UUID.fromString(as.getPersistentDataContainer().get(new NamespacedKey(RinDeath.getInstance(), "playeruuid"), PersistentDataType.STRING)), false);
 			}
 			
