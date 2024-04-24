@@ -22,7 +22,7 @@ import org.bukkit.util.RayTraceResult;
 public class RDCommand implements TabExecutor {
 	
 	
-	private static String[] t0arg= {"respawn","revive","reviveitem","help"};
+	private static String[] t0arg= {"respawn","revive","reviveitem","help","coin"};
 	@Override
 	public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
 		if (!(alias.equalsIgnoreCase("rind")||alias.equalsIgnoreCase("rindeath")))return null;
@@ -90,8 +90,10 @@ public class RDCommand implements TabExecutor {
 					player.sendMessage("你的复活晶片不足");
 					return true;
 				}
-				//扣除虚拟硬币;
-				RDSecondThread.getInstance().removePlayer(UUID.fromString(as.getPersistentDataContainer().get(new NamespacedKey(RinDeath.getInstance(), "playeruuid"), PersistentDataType.STRING)), false);
+				else{
+					//扣除虚拟硬币;
+					RDSecondThread.getInstance().removePlayer(UUID.fromString(as.getPersistentDataContainer().get(new NamespacedKey(RinDeath.getInstance(), "playeruuid"), PersistentDataType.STRING)), false);
+			        }
 			}
 			
 		}
