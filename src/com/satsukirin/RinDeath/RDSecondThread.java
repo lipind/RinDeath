@@ -51,7 +51,7 @@ public class RDSecondThread extends BukkitRunnable{
 		if (player==null)return;
 		if (player.isOnline())
 		if (!deadPlayers.containsKey(player.getUniqueId())) {
-			player.sendMessage("Äã»¹Î´ËÀÍö, ÎŞ·¨ÖØÉú/¸´»î");
+			player.sendMessage("ä½ è¿˜æœªæ­»äº¡, æ— æ³•é‡ç”Ÿ/å¤æ´»");
 			return;
 		}
 		player.getPersistentDataContainer().remove(new NamespacedKey(RinDeath.getInstance(), "respawntime"));
@@ -63,7 +63,9 @@ public class RDSecondThread extends BukkitRunnable{
 		}else {
 			player.teleport(as.getLocation().add(0,2,0));
 		}
-		as.remove();
+		if (as != null) {
+       		     as.remove();
+       		}
 		player.getPersistentDataContainer().remove(new NamespacedKey(RinDeath.getInstance(), "graveuuid"));
 		player.getPersistentDataContainer().remove(new NamespacedKey(RinDeath.getInstance(), "gamemode"));
 		if (config.getTiptype().equals(TipType.bossbar)) {
@@ -90,19 +92,19 @@ public class RDSecondThread extends BukkitRunnable{
 				deadPlayers.put(entry.getKey(),entry.getValue()-1);
 				Player player = RinDeath.getInstance().getServer().getPlayer(entry.getKey());
 				if (config.getTiptype().equals(TipType.actionbar)) {
-					player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW+"Ê£Óà¸´»îÊ±¼ä: "+entry.getValue()+" Ãë"));
+					player.spigot().sendMessage(ChatMessageType.ACTION_BAR, TextComponent.fromLegacyText(ChatColor.YELLOW+"å‰©ä½™å¤æ´»æ—¶é—´: "+entry.getValue()+" ç§’"));
 				}
 				if (config.getTiptype().equals(TipType.bossbar)) {
 					BossBar bb = RinDeath.getInstance().getServer().getBossBar(new NamespacedKey(RinDeath.getInstance(), "bb_"+player.getName()));
 					if (bb==null) {
-						bb=RinDeath.getInstance().getServer().createBossBar(new NamespacedKey(RinDeath.getInstance(), "bb_"+player.getName()), "Ê£Óà¸´»îÊ±¼ä: "+entry.getValue()+" Ãë", BarColor.WHITE, BarStyle.SOLID);
+						bb=RinDeath.getInstance().getServer().createBossBar(new NamespacedKey(RinDeath.getInstance(), "bb_"+player.getName()), "å‰©ä½™å¤æ´»æ—¶é—´: "+entry.getValue()+" ç§’", BarColor.WHITE, BarStyle.SOLID);
 						bb.addPlayer(player);
 					}
 					bb.setProgress(1.0*entry.getValue()/config.getRespawnTime());
-					bb.setTitle("Ê£Óà¸´»îÊ±¼ä: "+entry.getValue()+" Ãë");
+					bb.setTitle("å‰©ä½™å¤æ´»æ—¶é—´: "+entry.getValue()+" ç§’");
 				}
 				if (config.getTiptype().equals(TipType.title)) {
-					player.sendTitle("Á¦½ßµ¹ÏÂ", "Ê£Óà¸´»îÊ±¼ä: "+entry.getValue()+" Ãë", 3, 14, 3);
+					player.sendTitle("åŠ›ç«­å€’ä¸‹", "å‰©ä½™å¤æ´»æ—¶é—´: "+entry.getValue()+" ç§’", 3, 14, 3);
 				}
 			}
 		
